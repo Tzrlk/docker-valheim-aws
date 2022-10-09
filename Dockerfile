@@ -1,5 +1,8 @@
 # syntax=docker/dockerfile:1.4
 
+# Outer args.
+ARG LLOESCHE_VERSION=latest
+
 ## AWS CLI #####################################################################
 FROM debian:buster-slim as aws-cli
 
@@ -15,7 +18,6 @@ RUN curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip \
 RUN unzip awscliv2.zip
 
 ## ASSEMBLY ####################################################################
-ARG LLOESCHE_VERSION=latest
 FROM lloesche/valheim-server:${LLOESCHE_VERSION} as assembly
 
 # Install aws client for S3 access.
